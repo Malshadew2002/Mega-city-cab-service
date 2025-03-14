@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #001f3f; /* Dark Blue */
+            color: white;
+                        padding-bottom: 30px;
+            
+        }
+        .card {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4 border-0 rounded-3">
+            <h2 class="text-center text-success fw-bold">Booking Confirmed!</h2>
+            <p class="text-center text-muted">Thank you for booking with us. Here are your booking details:</p>
+
+            <div class="row g-4">
+                <!-- Booking Details -->
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-header bg-success text-white fw-bold">Booking Summary</div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr><th>Booking ID</th><td th:text="${booking.bookID}"></td></tr>
+                                    <tr><th>Name</th><td th:text="${booking.userFullName}"></td></tr>
+                                    <tr><th>Contact</th><td th:text="${booking.userContactNumber}"></td></tr>
+                                    <tr><th>Cab Number</th><td th:text="${cab.cabNumber}"></td></tr>
+                                    <tr><th>Model</th><td th:text="${cab.model}"></td></tr>
+                                    <tr><th>Seats</th><td th:text="${cab.seats}"></td></tr>
+                                    <tr><th>Category</th><td th:text="${cab.category}"></td></tr>
+                                    <tr><th>Selected Dates</th><td th:text="${booking.dates}"></td></tr>
+                                    <tr><th>Driver Option</th><td th:text="${booking.driverOption}"></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bill Details -->
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-header bg-warning text-dark fw-bold">Bill Summary</div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr><th>Base Amount</th><td>Rs <span th:text="${baseAmount}"></span></td></tr>
+                                    <tr><th>Driver Charges</th><td>Rs <span th:text="${driverCost}"></span></td></tr>
+                                    <tr><th>Tax ( <span th:text="${taxPercentage}"></span>% )</th><td>Rs <span th:text="${totalTax}"></span></td></tr>
+                                    <tr><th>Discount ( <span th:text="${discountPercentage}"></span>% )</th><td>- Rs <span th:text="${totalDiscount}"></span></td></tr>
+                                    <tr class="table-success fw-bold"><th>Total Amount</th><td>Rs <span th:text="${totalAmount}"></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center mt-4">
+                <p class="fw-bold">Your cab has been successfully booked. Have a great journey!</p>
+                <a href="/users/home" class="btn btn-primary me-2">Go to Home</a>
+                <a href="/booking/myBookings" class="btn btn-outline-primary">My Bookings</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

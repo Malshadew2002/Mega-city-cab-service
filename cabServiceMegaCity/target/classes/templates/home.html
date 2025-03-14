@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--style sheet links-->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Mega City Cab.com </title>
+</head>
+
+<style>
+
+/*links*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script");
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/*main*/
+:root{
+    --bg-color-1: #fff;
+  --bg-color-2: #f9f6f0;
+  --grey-color: #rgba(0,0,0,0.20);
+  --heading-color: #2c2c2c;
+  --text-color: #353535;
+  --primary-color: #FFA725;  /* Updated primary color */
+  --font-family-1: "Roboto", sans-serif;
+  --font-family-2: "Poppins", sans-serif;
+  --nav-items-border-bottom: 1px solid rgba(0,0,0,0.07);
+  --color-scheme: light;
+}
+
+
+body{
+  overflow-x: hidden;
+}
+
+/*scrollbar*/
+::-webkit-scrollbar{
+  width: 10px;
+  background: var(--bg-color-2);
+  color: white;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: var(--primary-color);
+}
+
+/*reusable classes */
+.flex-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/*Default settings*/
+section{
+  padding: 50px 5rem 35px 5rem;
+  margin-bottom: -1px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+img{
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  vertical-align: middle;
+}
+
+h1{
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--heading-color);
+  line-height: 1.2;
+}
+
+h2{
+  color: var(--heading-color);
+}
+
+h3{
+  font-family: var(--font-family-2);
+  letter-spacing: 0.1rem;
+  font-size: 34px;
+  margin-bottom: 15px;
+  line-height: 28px;
+  color: var(--primary-color);
+
+}
+
+h4{
+  line-height: 1.8;
+  color: var(--heading-color);
+  font-size: 24px;
+}
+
+h5{
+  color: var(--primary-color);
+  font-size: 20px;
+}
+
+p{
+  padding: 5px 0;
+  font-size: 18px;
+  color: var(--text-color);
+  line-height: 18px;
+  font-weight: 400;
+}
+a{
+  text-decoration: none;
+}
+
+ul{
+  display: flex;
+  list-style: none;
+}
+
+/*pre nav text*/
+
+#prenav-text{
+  width: 100%;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  z-index: 2;
+}
+#prenav-text .flex-row{
+  margin: 0 4rem;
+  justify-content: space-between;
+  align-items: center;
+}
+#prenav-text .contact-info,
+#prenav-text .opening-times{
+  font-size: 14px;
+  color: var(--primary-color);
+  margin: 0;
+}
+#prenav-text .contact-info span{
+color: var(--primary-color);
+}
+#prenav-text .social-links{
+  margin: 0;
+}
+#prenav-text .social-links li a{
+color: #FFA725;
+font-size: 17px;
+margin: 0 10px;
+}
+
+
+/*navbar*/
+
+#navbar{
+position: absolute;
+top: 45px;
+left: 0;
+right: 0;
+z-index: 3;
+background-color: rgba(0, 0, 0, 0.4);
+border-radius: 5px;
+height: 5.5rem;
+margin: 0.4rem;
+justify-content: space-between;
+padding: 0 25px;
+transition: all 0.3s ease-in-out;
+box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.logo h5{
+font-size: 22px;
+padding-right: 100PX;
+color: var(--primary-color);
+display: inline-block;
+}
+
+.logo h5 span{
+color: white;
+
+}
+
+.nav-items{
+  margin-right: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-items .nav-links{
+  color: white;
+  padding: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-items .nav-links:hover{
+  color: var(--primary-color);
+}
+
+.nav-btns{
+  gap: 10px;
+}
+
+.nav-icon i{
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu-btn-wrapper{
+  display: none;
+}
+#navbar.fixed{
+  padding: 0 4.5rem;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  border-radius: 0;
+  height: 4rem;
+  background-color: var(--bg-color-1);
+}
+#navbar.fixed .logo h5{
+  color: var(--heading-color);
+}
+#navbar.fixed .logo h5 span{
+  color: var(--primary-color);
+}
+#navbar.fixed .nav-items .nav-links{
+  color: var(--heading-color);
+}
+#navbar.fixed .nav-items .nav-links:hover{
+  color: var(--primary-color);
+}
+#navbar.fixed .nav-icon i{
+  color: var(--heading-color);
+}
+
+/*home*/
+
+#home{
+  padding: 0;
+  margin-bottom: -10px;
+
+}
+
+#home .slide{
+  background-position: center!important;
+  background-size: cover!important;
+  background-repeat: no-repeat!important;
+  margin-left: -1px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+#home .slide1{
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/images/img1.jpg);
+  
+}
+
+
+
+#home .slide .content{
+  text-align: center;
+  margin-top: 40px;
+
+}
+#home .slide .content .sub-heading{
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 900;
+  letter-spacing: 5px;
+  display: inline-block;
+  margin-bottom: 10PX;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 0 10px;
+  position: relative;
+  line-height: 2;
+  z-index: 0;
+  text-shadow: 0px 2px 2px black;
+
+}
+#home .slide .content .heading{
+  color: white;
+  line-height: 1;
+  font-family: "Dancing Script", cursive;
+  font-size: 10vw;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+#home .slide .content .sub-heading-2{
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  letter-spacing: 5px;
+  text-shadow: 0px 2px 2px black;
+}
+
+#home .slide .content .sub-heading-2::after,
+#home .slide .content .sub-heading-2::before{
+  content: "";
+  display: inline-block;
+  margin: 0.2rem;
+  width: 70px;
+  transform: translateY(-5px);
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+
+
+/*About*/
+#about{
+  padding: 0 4.5rem;
+  background-color: var(--bg-color-1);
+  justify-content: flex-start;
+  position: relative;
+}
+
+
+/*About*/
+#about{
+  padding: 0 4.5rem;
+  background-color: var(--bg-color-1);
+  justify-content: flex-start;
+  position: relative;
+}
+
+/*booking form*/
+
+.booking-form{
+  width: 30%;
+  background-color: var(--primary-color);
+  padding: 50px 30px 30px 30px;
+}
+.booking-form span{
+  font-size: 30px;
+  color: white;
+}
+.booking-form h2{
+  font-size: 40px;
+  color: white;
+  line-height: 0.8;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.btn1{
+  display: inline-block;
+  background-color: white;
+  border: 1px solid white;
+  color: black;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 20px 30px;
+  margin-top: 10px;
+  transition: all 0.3 ease-in-out;
+  text-align: center;
+  position: relative;
+}
+.btn1:hover{
+  background-color: var(--primary-color);
+  color: white;
+}
+
+#about .text-wrapper{
+  padding: 10px 60px;
+  width: 50%;
+}
+#about .text-wrapper h1{
+  font-size: 60px;
+}
+#about .text-wrapper h3{
+  font-size: 28px;
+  margin: 20px 0;
+  font-family: "Dancing Script", cursive;
+}
+
+#about .img-wrapper {
+  margin-top: auto;
+  position: absolute;
+  width: 25rem;
+  right: 100px;
+  bottom: 50px;
+}
+
+#quote{
+  padding: 150px 0;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(images/img1.jpg);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+}
+#quote .text-wrapper h2{
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+#quote .text-wrapper h1{
+  color: white;
+  font-family: "Dancing Script", cursive;
+  font-size: 60px;
+}
+
+/*section Heading*/
+.section-heading{
+  text-align: center;
+  margin: 30px 0;
+
+}
+.section-heading h3{
+  font-family: "Dancing Script", cursive;
+}
+
+.square-wrapper{
+  position: relative;
+  margin: 1rem;
+}
+
+.square-wrapper::after,
+.square-wrapper::before{
+  content: "";
+  display: inline-block;
+  margin: 0.2rem;
+  width: 70px;
+  transform: translateY(-5px);
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.square{
+  background-color: var(--primary-color);
+  transform: rotate(45deg);
+  margin: 0 0.25rem;
+}
+.square:nth-child(1){
+  width: 6px;
+  height: 6px;
+}
+.square:nth-child(2){
+  width: 10px;
+  height: 10px;
+}
+.square:nth-child(3){
+  width: 6px;
+  height: 6px;
+}
+
+
+/*footer*/
+footer{
+  justify-content: space-between;
+  background-color: #101418;
+}
+.footer-top{
+  padding: 30px 5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+
+}
+.footer-top .flex-col{
+  width: 15rem;
+  margin-bottom: 30px;
+}
+.footer-top .flex-col .logo-name,
+.footer-top .flex-col .heading{
+  font-size: 20px;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+}
+.footer-top .flex-col .desc{
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+}
+.footer-top .flex-col .social-links{
+  margin-top: 10px;
+  display: flex;
+}
+.footer-top .flex-col .social-links li a{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  margin-right: 10px;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease-in-out;
+}
+.footer-top .flex-col .social-links li a:hover{
+  color: white;
+  background-color: black;
+}
+.footer-top .flex-col .timings li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+  height: 30px;
+  
+}
+.footer-top .flex-col .timings li .days{
+  color: white;
+  font-size: 14px;
+}
+.footer-top .flex-col .timings li .time{
+  color: #858585;
+  font-size: 14px;
+}
+.footer-top .flex-col a{
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding: 5px 0;
+  transition: color 0.3s ease-in-out;
+}
+.footer-top .flex-col a:hover{
+  color: var(--primary-color);
+}
+.footer-bottom{
+  background-color: var(--primary-color);
+  height: 3.5rem;
+  text-align: center;
+}
+.footer-bottom span{
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+}
+
+
+/*responsive*/
+@media(max-width: 1080px){
+  #about .img-wrapper{
+    width: 18rem;
+    margin-left: 20px;
+    margin-right: -60px;
+  }
+  #prenav-text{
+    visibility: hidden;
+  }
+  .social-links{
+    visibility: hidden;
+  }
+  
+}
+
+@media(max-width: 1030px){
+  #navbar{
+    margin: 0 2rem;
+  }
+  #navbar.fixed{
+    padding: 0 1.5rem;
+  }
+  #about .img-wrapper{
+    position: static;
+    width: 45%;
+    margin: 0 auto;
+  }
+  .footer-top .flex-row{
+    width: 20rem;
+    text-align: center;
+    align-items: center;
+  }
+  .booking-form h2{
+    font-size: 30px;
+  }
+  #about .text-wrapper{
+    font-size: 10px;
+    margin-left: -50px;
+  }
+  #about .img-wrapper{
+    width: 170px;
+    margin-right: -50px;
+  }
+  .reservation-form{
+    margin-right: 300px;
+  }
+  
+}
+
+@media(max-width:980px){
+  h4{
+    font-size: 20px;
+  }
+  #prenav-text{
+    display: none;
+  }
+  .logo h5{
+    font-size: 26px;
+    transform: translateY(-1.5px);
+    margin-left: 3.75rem;
+  }
+  .logo h5 span{
+    font-size: 26px;
+  }
+  .menu-btn-wrapper{
+    display: block!important;
+  }
+  #navbar{
+    top: 0;
+    margin: 0;
+  }
+  #navbar.fixed{
+    padding: 0 25px;
+  }
+  .nav-items{
+    padding: 15px;
+    position: absolute;
+    flex-direction: column;
+    top: 100%;
+    overflow: hidden;
+    z-index: 999;
+    background-color: var(--bg-color-1);
+    left: 10px;
+    right: 10px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.2);
+    transition: all 0.3s ease-in-out;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .nav-items li{
+    border-bottom: var(--nav-items-border-bottom);
+  }
+  .nav-items li:last-child{
+    border-bottom: none;
+  }
+  .nav-items .nav-links{
+    color: var(--heading-color);
+    width: 100%;
+    padding: 10px;
+    display: block;
+  }
+  .nav-items.active{
+    height: 280px;
+    visibility: visible;
+    opacity: 1;
+  }
+  #home .slide .content .heading{
+    font-size: 15vw;
+    margin: 15px 0;
+  }
+}
+
+@media(max-width: 850px){
+  #about .text-wrapper h1{
+    font-size: 48px;
+  }
+  h1{
+    font-size: 40px;
+  }
+  .booking-form{
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+  }
+  .user-tabs{
+    width: 50px;
+    font-size: 15px;
+    align-items: center;
+  }
+  .user-tab-item{
+    width: 140px;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .user-tab-item h6{
+    font-size: 15px;
+    margin-left: -200px;
+  }
+  .user-tab-item i{
+    font-size: 40px;
+    margin-right: 80px;
+  }
+}
+
+@media(max-width: 780px){
+  .nav-items .nav-links{
+    font-size: 16px;
+  }
+  section{
+    padding: 25px;
+  }
+ 
+  .footer-top{
+    padding: 35px 15px;
+  }
+  
+}
+
+@media(max-width: 480px){
+  .logo{
+    margin-left: 0.5rem;
+    flex: auto;
+  }
+  .logo h5{
+    margin: 0;
+  }
+  h1{
+    font-size: 28px;
+  }
+  h3{
+    font-size: 24px;
+  }
+  #home .slide .content{
+    width: 25rem;
+    padding: 0 2rem;
+  }
+  #home .slide .content .sub-heading-2::after,
+  #home .slide .content .sub-heading-2::before{
+    margin: 0 1rem;
+    width: 40px;
+  }
+  #about{
+    padding: 0 10px;
+  }
+  .booking-form h2{
+    font-size: 10vw;
+  }
+  #about .text-wrapper{
+    padding: 0;
+    width: 100%;
+  }
+  #about .img-wrapper{
+    width: 60%;
+  }
+  .section-heading{
+    margin-bottom: 10px;
+  }
+  .square-wrapper::after,
+  .square-wrapper::before{
+    width: 50px;
+  }
+  .gallery-wrapper .gallery-img{
+    width: 90vw;
+  }
+  .footer-top .flex-col{
+    width: 100%;
+  }
+  
+}
+
+@media(max-width: 340px){
+  #home .slide .content{
+    width: 100%;
+  }
+  #navbar,
+  #navbar.fixed{
+    padding: 0 10px;
+  }
+
+}
+
+
+
+</style>
+
+<body>
+
+<header>
+   <!--prenav start-->
+
+    <div id="prenav-text">
+        <div class="flex-row">
+            <div class="contact-info">Phone no: <span>+94 702259866</span>
+             or email us: <span>megacitycab@gmail.com</span>
+            </div>
+            <div class="opening-times flex-row">
+                24 hours service
+                <ul class="social-links flex-row">
+                    <li><a href="https://www.facebook.com/"><i class="bx bxl-facebook"></i></a></li>
+                    <li><a href="https://www.facebook.com/"><i class="bx bxl-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/"><i class="bx bxl-instagram"></i></a></li>
+                    <li><a href="https://www.whatsapp.com/"><i class="bx bxl-whatsapp"></i></a></li>
+                    <li><a href="https://www.facebook.com/"><i class="bx bxl-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+   <!--prenav end-->
+
+   <!--navbar start-->
+
+    <nav id="navbar" class="navbar flex-row">
+        <div class="nav-icon menu-btn-wrapper">
+            <i id="menu-btn" class="menu-btn bx bx-menu" ></i>
+        </div>
+
+        <div class="logo">
+            <h5>Mega City Cab<span>Service</span></h5>
+        </div>
+
+        <ul id="nav-items" class="nav-items">
+            <li><a href="/users/home" class="nav-links">HOME</a></li>
+            <li><a href="#about" class="nav-links">ABOUT</a></li>
+            <li><a href="/booking/myBookings" class="nav-links">BOOKINGS</a></li>
+            <li><a href="/manageUsers/myProfile" class="nav-links">PROFILE</a></li>
+            <li><a href="#footer" class="nav-links">CONTACT</a></li>
+        </ul>
+
+
+    <!--navbar end-->
+
+</header>
+
+<!--Home section-->
+<section id="home">
+<div class="slide slide1">
+  <div class="content">
+  <p class="sub-heading">MEGA CITY CAB SERVICE</p>
+  <h1 class="heading">Ride Easy</h1>
+  <p class="sub-heading-2"> Arrive Happy</p>
+</div>
+        
+</div>
+    
+</section>
+
+<!--Home section-->
+
+<!--About section-->
+
+<section id="about" class="flex-row">
+    <div class="booking-form">
+        <span>Reserve Your</span>
+        <h2>VEHICLE</h2>
+        <img src="/images/img4.jpg" alt="#">
+            <a href="/booking" type="submit" class="btn1">Book A car</a>
+     </form>
+    </div>
+    <div class="text-wrapper">
+        <h1>FACILITIES</h1>
+        <h3>Mega City Cabs</h3>
+        <p>~ Wide Vehicle Range
+        <br>
+            <br>~ Clean & Well-Maintained Vehicles 
+            <br>
+            <br>~ Air-Conditioned Cabs 
+            <br>
+            <br>~ 24/7 Availability 
+            <br>
+            <br>~ Wi-Fi & Charging Ports
+            <br>
+            <br>~ Pet-Friendly Rides
+            <br>
+            <br>~ Child Seat Option
+         </p>
+    </div>
+    <div class="img-wrapper">
+       <img src="/images/cars_collage.jpg" alt="#">
+    </div>
+</section>
+
+
+<footer id="footer">
+    <div class="footer-top flex-row">
+        <div class="flex-col">
+            <h4 class="logo-name">Mega City Cabs</h4>
+            <p class="desc">offers reliable, comfortable, and 24/7 transportation. With a fleet of well-maintained, air-conditioned vehicles, we provide services like Wi-Fi, charging ports, and pet-friendly rides. Our professional drivers ensure a smooth, hassle-free journey. Book your ride today for a premium experience at competitive rates!</p>
+
+                <ul class="social-links">
+                    <li><a href="#"><i class="icon bx bxl-facebook"></i></a></li>
+                    <li><a href="#"><i class="icon bx bxl-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon bx bxl-instagram"></i></a></li>
+                </ul>
+        </div>
+        <div class="flex-col">
+            <h4 class="heading">ADDRESS</h4>
+            <p class="desc">265 Galle Rd,<br> Colombo 00300</p>
+            <p class="desc">P: +94 702259866<br>E: megacitycab@gmail.com </p>
+            </div>
+            
+            <div class="flex-col">
+            <h4 class="heading">MORE INFO</h4>
+            <a href="#about">ABOUT</a>
+            <a href="#promotions">BOKINGS</a>
+            <a href="#gallery">PROFILE</a>
+            <a href="#footer">CONTACT</a>
+            </div>
+    </div>
+
+<div class="footer-bottom flex-row">
+    <span>Copyright &copy 2023 All rights reserved | Developed by malsha dewmini</span>
+</div>
+
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+    <script src="/script/script.js"></script>
+
+</body>
+</html>

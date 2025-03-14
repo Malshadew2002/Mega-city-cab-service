@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1e1e2f;
+            color: white;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #11101d;
+            position: fixed;
+            padding: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .sidebar a i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        .sidebar a:hover {
+            background: #FFD700;
+            color: black;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .card {
+            background: #222230;
+            color: white;
+            border: none;
+        }
+        .card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+   <div class="sidebar">
+        <h4 class="text-center text-warning">Admin Panel</h4>
+        <a href="/users/admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="/manageUsers"><i class="fas fa-users"></i> Users</a>
+        <a href="/booking/allBookings"><i class="fa-solid fa-bookmark"></i>Bookings</a>
+        <a href="/manageCabs"><i class="fas fa-car"></i> Cabs</a>
+        <a href="/amounts"><i class="fas fa-file-invoice-dollar"></i> Amounts</a>
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+    <div class="content">
+        <h2>Dashboard</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card p-3 text-center">
+                    <i class="fas fa-users"></i>
+                    <h4>Total Users</h4>
+                    <p id="userCount">Loading...</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 text-center">
+                    <i class="fas fa-car"></i>
+                    <h4>Total Cabs</h4>
+                    <p id="cabsCount">Loading...</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 text-center">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h4>Total Bookings</h4>
+                    <p id="bookingCount">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    function updateCounts() {
+        fetch('/admin/dashboard/stats')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userCount').innerText = data.userCount;
+                document.getElementById('cabsCount').innerText = data.cabsCount;
+                document.getElementById('bookingCount').innerText = data.bookingCount; // Assuming you calculate revenue elsewhere or remove if not used
+            });
+    }
+
+    setInterval(updateCounts, 5000); // Refresh data every 5 seconds
+    updateCounts(); // Initial load
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Cab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+        .card {
+            background: linear-gradient(145deg, #333, #000);
+            border: 2px solid #FFD700; /* Yellow border */
+            border-radius: 10px;
+        }
+        .card-header {
+            background-color: #FFD700;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .form-label {
+            color: #fff;
+        }
+        .form-control, .form-select {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #FFD700;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 10px #FFD700;
+        }
+        .btn-primary {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            margin: 20px;
+        }
+        .btn-primary:hover {
+            background-color: #f7c600;
+        }
+        .btn-close {
+            color: #FFD700;
+        }
+        .alert {
+            border-radius: 10px;
+        }
+        .cancel-btn {
+            background-color: #d9534f; /* Red color for cancel */
+            color: #fff;
+            border: none;
+            margin: 20px;
+        }
+        .cancel-btn:hover {
+            background-color: #c9302c;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-header text-center">Add a Cab</div>
+                    <div class="card-body">
+                        <form action="/manageCabs/addCab" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="cabNumber" class="form-label">Cab Number</label>
+                                <input type="text" class="form-control" id="cabNumber" name="cabNumber" placeholder="Enter cab number" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="model" class="form-label">Model</label>
+                                <input type="text" class="form-control" id="model" name="model" placeholder="Enter model" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="seats" class="form-label">Seats</label>
+                                <input type="number" class="form-control" id="seats" name="seats" placeholder="Enter number of seats" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="">Select category</option>
+                                    <option value="car">Car</option>
+                                    <option value="van">Van</option>
+                                    <option value="bus">Bus</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ownerContact" class="form-label">Owner Contact</label>
+                                <input type="tel" class="form-control" id="ownerContact" name="ownerContact" placeholder="Enter owner contact" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="perDayAmount" class="form-label">Per Day Amount</label>
+                                <input type="number" step="0.01" class="form-control" id="perDayAmount" name="perDayAmount" placeholder="Enter per day amount" required>
+                            </div>
+<div class="mb-3">
+        <label for="file" class="form-label">Cab Image</label>
+        <input type="file" class="form-control" id="file" name="file" accept="image/*">
+    </div>
+                            
+                            <div class="btn-container">
+                                <button type="submit" class="btn btn-primary w-50">Add Cab</button>
+                                <a href="/manageCabs" class="btn cancel-btn w-50">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

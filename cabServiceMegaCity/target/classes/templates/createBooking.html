@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: rgba(34, 34, 48, 0.95);
+            color: white;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(34, 34, 48, 0.95);
+            color: white;
+            border: 1px solid rgba(255, 215, 0, 0.6);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 600;
+            color: #FFD700;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.1);
+            color: black;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+        }
+        
+        
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-primary {
+            background: #FFD700;
+            color: black;
+            border-radius: 8px;
+            font-weight: bold;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #e6c200;
+            box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .table {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-lg">
+            <h2>Book a Cab</h2>
+            <form method="get" action="/booking/filterCabs">
+                <div class="mb-3">
+                    <label for="category" class="form-label">Select Category</label>
+                    <select class="form-select" name="category" id="category" required>
+                        <option value="">Select Category</option>
+                        <option th:each="cat : ${categories}" 
+                                th:value="${cat}" 
+                                th:text="${cat}" 
+                                th:selected="${cat == selectedCategory}"></option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dates" class="form-label">Select Dates</label>
+                    <input type="text" id="dates" name="dates" class="form-control" 
+                           placeholder="Select multiple consecutive dates" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="driverOption" class="form-label">Select Driver Option</label>
+                    <select class="form-select" name="driverOption" id="driverOption" required>
+                        <option value="">Select an option</option>
+                        <option value="With Driver">With Driver</option>
+                        <option value="Without Driver">Without Driver</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+
+            <div class="mt-4" th:if="${filteredCabs != null}">
+                <h2>Available Cabs:</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Cab ID</th>
+                            <th>Cab Number</th>
+                            <th>Model</th>
+                            <th>Seats</th>
+                            <th>Category</th>
+                            <th>Owner Contact</th>
+                            <th>Per Day Amount</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cab : ${filteredCabs}">
+                            <td th:text="${cab.id}"></td>
+                            <td th:text="${cab.cabNumber}"></td>
+                            <td th:text="${cab.model}"></td>
+                            <td th:text="${cab.seats}"></td>
+                            <td th:text="${cab.category}"></td>
+                            <td th:text="${cab.ownerContact}"></td>
+                            <td th:text="${cab.perDayAmount}"></td>
+                            <td>
+                                <img th:if="${cab.image}" th:src="@{'/uploads/' + ${cab.image}}" alt="Cab Image" width="100">
+                                <span th:if="${cab.image == null}">No Image</span>
+                            </td>
+                            <td>
+                                <a th:href="@{/booking/confirmBooking/{id}(id=${cab.id}, dates=${param.dates[0]}, driverOption=${param.driverOption[0]})}" 
+                                   class="btn btn-success">Select</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const today = new Date();
+        const todayString = today.toISOString().split('T')[0];
+
+        flatpickr("#dates", {
+            mode: "multiple",
+            dateFormat: "Y-m-d",
+            minDate: todayString,
+            onChange: function(selectedDates, dateStr, instance) {
+                selectedDates.sort((a, b) => a.getTime() - b.getTime());
+                for (let i = 1; i < selectedDates.length; i++) {
+                    const prevDate = selectedDates[i - 1];
+                    const currentDate = selectedDates[i];
+                    if ((currentDate - prevDate) / (1000 * 3600 * 24) !== 1) {
+                        alert("Please select consecutive dates only.");
+                        instance.clear();
+                        break;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
